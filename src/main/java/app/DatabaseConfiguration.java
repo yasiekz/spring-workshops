@@ -1,8 +1,10 @@
 package app;
 
+import app.domain.topStory.TopStory;
 import com.mongodb.MongoClient;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.mapping.MapperOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,7 +25,7 @@ public class DatabaseConfiguration {
     @Bean(name = "dataStore")
     public Datastore datastore() throws UnknownHostException {
         Morphia morphia = new Morphia();
-        morphia.mapPackage("app.domain");
+        morphia.map(TopStory.class);
         Datastore datastore = morphia.createDatastore(mongoClient(), dbname);
         datastore.ensureIndexes();
         return datastore;
