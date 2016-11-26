@@ -1,9 +1,10 @@
-package app.Controller;
+package app.controller;
 
-import app.Domain.topStory.TopStory;
-import app.Domain.topStory.TopStoryRepository;
-import app.Domain.topStory.dto.TopStoryDTO;
-import app.Domain.topStory.dto.TopStoryDTORepository;
+import app.domain.topStory.TopStory;
+import app.domain.topStory.TopStoryRepository;
+import app.domain.topStory.builder.TopStoryBuilder;
+import app.domain.topStory.dto.TopStoryDTO;
+import app.domain.topStory.dto.TopStoryDTORepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class TopStoryController {
     TopStoryRepository topStoryRepository;
     TopStoryDTORepository topStoryDTORepository;
+    TopStoryBuilder topStoryBuilder;
 
     @Autowired
-    public TopStoryController(TopStoryRepository topStoryRepository, TopStoryDTORepository topStoryDTORepository) {
+    public TopStoryController(TopStoryRepository topStoryRepository, TopStoryDTORepository topStoryDTORepository, TopStoryBuilder topStoryBuilder) {
         this.topStoryRepository = topStoryRepository;
         this.topStoryDTORepository = topStoryDTORepository;
+        this.topStoryBuilder = topStoryBuilder;
     }
 
     @RequestMapping(value = "/refresh/{id:\\d+}", produces = "application/json")
     public String refresh(@PathVariable int id) {
 
         TopStoryDTO topStoryDTO = this.topStoryDTORepository.getTopStoryDTO(id);
+        TopStory topStory = this.topStoryBuilder.build(topStoryDTO);
+        this.topStoryRepository.save(topStory);
+
         Gson gson = new GsonBuilder().serializeNulls().create();
-        return gson.toJson(topStoryDTO);
+        return gson.toJson(topStory);
     }
 }

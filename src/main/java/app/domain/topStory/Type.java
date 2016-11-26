@@ -1,4 +1,4 @@
-package app.Domain.topStory;
+package app.domain.topStory;
 
 public enum Type {
     standard

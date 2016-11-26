@@ -1,4 +1,4 @@
-package app.Domain.topStory;
+package app.domain.topStory;
 
 import org.mongodb.morphia.Datastore;
 import org.springframework.beans.factory.annotation.Autowired;

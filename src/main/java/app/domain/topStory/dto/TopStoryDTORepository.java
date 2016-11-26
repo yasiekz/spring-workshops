@@ -1,4 +1,4 @@
-package app.Domain.topStory.dto;
+package app.domain.topStory.dto;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

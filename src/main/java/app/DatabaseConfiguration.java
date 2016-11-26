@@ -23,7 +23,7 @@ public class DatabaseConfiguration {
     @Bean(name = "dataStore")
     public Datastore datastore() throws UnknownHostException {
         Morphia morphia = new Morphia();
-        morphia.mapPackage("app.Domain");
+        morphia.mapPackage("app.domain");
         Datastore datastore = morphia.createDatastore(mongoClient(), dbname);
         datastore.ensureIndexes();
         return datastore;
