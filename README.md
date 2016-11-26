@@ -18,11 +18,12 @@
 - Spring and dependency injection (but only some easy examples)
 - Morphia - what is it, and its adoption for spring
 - TopStory entity with some Morphia Annotations
-- GSon - json transformer from google
+- Support mongoDb indexes using Morphia (and why mapping entities is so necessery)
+- GSon - json transformer from google + excluding fields from gson (transient or @Expose and diff between them)
 - TopStory repository with save, and some get methods.
 - TopStoryDTO from json with TopStoryDTORepository
 - Photo and Video entity
 - Handling collections with Morphia
 - Finally refreshing TopStory object
 
-*Good luck*
+*Good luck Marciny and others ducks* 
