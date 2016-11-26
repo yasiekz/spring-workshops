@@ -9,10 +9,10 @@ public class TopStoryDTO {
     public int id;
     public String title;
     public String lead;
-    public int photo;
-    public int video;
-    public int article;
-    public int additionalResource;
+    public Integer photo;
+    public Integer video;
+    public Integer article;
+    public Integer additionalResource;
     public TitleSize titleSize;
     public Type type;
 }
