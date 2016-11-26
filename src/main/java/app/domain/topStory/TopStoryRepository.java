@@ -1,7 +1,6 @@
 package app.domain.topStory;
 
 import app.domain.NotFoundException;
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

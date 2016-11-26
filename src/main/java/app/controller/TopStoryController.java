@@ -44,4 +44,14 @@ public class TopStoryController {
         Gson gson = new GsonBuilder().create();
         return gson.toJson(topStory);
     }
+
+    @RequestMapping(value = "/get/{id:\\d+}", produces = "application/json")
+    public String get(@PathVariable int id) throws NotFoundException {
+
+        TopStory topStory = this.topStoryRepository.findOne(id);
+            Gson gson = new GsonBuilder().create();
+        return gson.toJson(topStory);
+    }
+
+
 }

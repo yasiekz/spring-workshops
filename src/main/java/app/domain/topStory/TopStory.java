@@ -2,6 +2,7 @@ package app.domain.topStory;
 
 import app.domain.photo.PhotoDTO;
 import app.domain.video.VideoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -11,7 +12,7 @@ import org.mongodb.morphia.annotations.Reference;
 @Entity
 public class TopStory {
     @Id
-    private ObjectId objectId;
+    private transient ObjectId objectId;
     @Property
     private int id;
     @Property
