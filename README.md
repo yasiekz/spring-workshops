@@ -12,3 +12,17 @@
 
 - Run robomongo and create default connection at localhost:27017
 - Add database java-workshops
+
+## Agenda
+
+- Spring and dependency injection (but only some easy examples)
+- Morphia - what is it, and its adoption for spring
+- TopStory entity with some Morphia Annotations
+- GSon - json transformer from google
+- TopStory repository with save, and some get methods.
+- TopStoryDTO from json with TopStoryDTORepository
+- Photo and Video entity
+- Handling collections with Morphia
+- Finally refreshing TopStory object
+
+*Good luck*
