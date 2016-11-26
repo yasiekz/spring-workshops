@@ -1,4 +1,4 @@
-package app.Domain;
+package app.Domain.topStory;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
