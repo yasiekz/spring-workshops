@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.domain.NotFoundException;
 import app.domain.topStory.TopStory;
 import app.domain.topStory.TopStoryRepository;
 import app.domain.topStory.builder.TopStoryBuilder;
@@ -29,10 +30,18 @@ public class TopStoryController {
     public String refresh(@PathVariable int id) {
 
         TopStoryDTO topStoryDTO = this.topStoryDTORepository.getTopStoryDTO(id);
-        TopStory topStory = this.topStoryBuilder.build(topStoryDTO);
+        TopStory topStory;
+
+        try {
+            TopStory oldTopStory = this.topStoryRepository.findOne(id);
+            topStory = this.topStoryBuilder.build(oldTopStory.getObjectId(), topStoryDTO);
+        } catch (NotFoundException e) {
+            topStory = this.topStoryBuilder.build(topStoryDTO);
+        }
+
         this.topStoryRepository.save(topStory);
 
-        Gson gson = new GsonBuilder().serializeNulls().create();
+        Gson gson = new GsonBuilder().create();
         return gson.toJson(topStory);
     }
 }

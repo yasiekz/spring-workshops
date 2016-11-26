@@ -8,6 +8,6 @@ public class VideoDTORepository {
     public VideoDTO getVideoDTO(int id)
     {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("http://json-spring/photo-" + id + ".json", VideoDTO.class);
+        return restTemplate.getForObject("http://json-spring/video-" + id + ".json", VideoDTO.class);
     }
 }

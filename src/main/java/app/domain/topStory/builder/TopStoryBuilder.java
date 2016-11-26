@@ -6,6 +6,7 @@ import app.domain.topStory.TopStory;
 import app.domain.topStory.dto.TopStoryDTO;
 import app.domain.video.VideoDTO;
 import app.domain.video.VideoDTORepository;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,8 +21,8 @@ public class TopStoryBuilder {
     }
 
     public TopStory build(TopStoryDTO topStoryDTO) {
-        VideoDTO videoDTO = this.getVideo(1);
-        PhotoDTO photoDTO = this.getPhoto(1);
+        VideoDTO videoDTO = this.getVideo(topStoryDTO.video);
+        PhotoDTO photoDTO = this.getPhoto(topStoryDTO.photo);
 
         return new TopStory(
                 topStoryDTO.id,
@@ -31,6 +32,13 @@ public class TopStoryBuilder {
                 videoDTO,
                 topStoryDTO.titleSize
         );
+    }
+
+    public TopStory build(ObjectId objectId, TopStoryDTO topStoryDTO)
+    {
+        TopStory topStory = this.build(topStoryDTO);
+        topStory.setObjectId(objectId);
+        return topStory;
     }
 
     private VideoDTO getVideo(int id)

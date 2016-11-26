@@ -33,4 +33,12 @@ public class TopStory {
         this.video = video;
         this.titleSize = titleSize;
     }
+
+    public void setObjectId(ObjectId objectId) {
+        this.objectId = objectId;
+    }
+
+    public ObjectId getObjectId() {
+        return objectId;
+    }
 }
