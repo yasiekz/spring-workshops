@@ -34,17 +34,34 @@ public class TopStoryController
     public TopStory refresh(@PathVariable int id)
     {
         TopStoryDTO topStoryDTO = topStoryClient.getById(id);
-        VideoDTO videoDTO = videoClient.getById(topStoryDTO.videoId);
         PhotoDTO photoDTO = photoClient.getById(topStoryDTO.photoId);
 
-        Video video = new Video(videoDTO.title);
+        Video video = null;
+        if (topStoryDTO.videoId != null) {
+            VideoDTO videoDTO = videoClient.getById(topStoryDTO.videoId);
+            video = new Video(videoDTO.title);
+        }
+
         Photo photo = new Photo(photoDTO.title);
 
-        return new TopStory(
-            topStoryDTO.title,
-            video,
-            photo
-        );
+        TopStory topStory = repository.getById(id);
+        if (topStory != null) {
+            topStory
+                .setPhoto(photo)
+                .setVideo(video)
+                .setTitle(topStoryDTO.title);
+        } else {
+            topStory = new TopStory(
+                id,
+                topStoryDTO.title,
+                video,
+                photo
+            );
+        }
+
+        repository.save(topStory);
+
+        return topStory;
     }
 
     @RequestMapping(value = "/topstory/{id:\\d+}", produces = "application/json")

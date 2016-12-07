@@ -20,15 +20,18 @@ public class TopStoryRepository
 
     public void save(TopStory topStory)
     {
-        videoRepository.save(topStory.getVideo());
+        Video video = topStory.getVideo();
+        if (video != null) {
+            videoRepository.save(video);
+        }
         datastore.save(topStory);
     }
 
-    public TopStory findById(ObjectId topStoryId)
+    public TopStory getById(Integer id)
     {
         return datastore.find(TopStory.class)
-            .field("objectId")
-            .equal(topStoryId)
+            .field("id")
+            .equal(id)
             .get();
     }
 
