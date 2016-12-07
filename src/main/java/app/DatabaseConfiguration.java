@@ -19,7 +19,7 @@ public class DatabaseConfiguration {
 
     @Bean
     public MongoClient mongoClient() throws UnknownHostException {
-        return (new MongoClient(host+":"+port));
+        return new MongoClient(host+":"+port);
     }
 
     @Bean(name = "dataStore")
